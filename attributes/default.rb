@@ -1,0 +1,6 @@
+default[:storm][:install_root] = "/usr/local"
+default[:storm][:release_root] = "https://github.com/downloads/nathanmarz/storm"
+default[:storm][:relase_version] = "storm-0.5.4"
+default[:storm][:install_dir] = "#{default[:storm][:install_root]}/#{default[:storm][:release_version]}"
+default[:jzmq][:repo] = "git://github.com/nathanmarz/jzmq.git"
+default[:jzmq][:srcdir] = "/usr/local/src"

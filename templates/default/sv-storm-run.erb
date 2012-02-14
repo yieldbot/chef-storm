@@ -1,0 +1,4 @@
+#!/bin/sh
+# Deploy time: <%= node['ohai_time'] %>
+exec 2>&1
+exec <%= @node[:storm][:install_dir] %>/bin/storm <%= @options[:daemon] %>

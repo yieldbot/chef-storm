@@ -1,0 +1,37 @@
+#
+# Cookbook Name:: storm
+# Recipe:: default
+#
+# Copyright 2011, YOUR_COMPANY_NAME
+#
+# All rights reserved - Do Not Redistribute
+#
+package "unzip"
+
+storm_zip = File.join(Chef::Config[:file_cache_path], "/", "#{node[:storm][:release_archive]}.zip")
+storm_jar = "#{node[:storm][:install_dir]}/#{node[:storm][:release_version]}.jar"
+storm_conf = "#{node[:storm][:install_dir]}/conf/storm.yaml"
+
+remote_file storm_zip do
+  source "#{node[:storm][:release_root]}/#{node[:storm][:release_arcive]}"
+end
+
+bash "install storm" do
+  cwd Chef::Config[:file_cache_path]
+  code <<-EOH
+    unzip #{storm_zip} -d #{node[:storm][:install_root]}
+  EOH
+  not_if { ::FileTest.exists?("#{storm_jar}") }
+end
+
+settings_variables = {
+  :zookeepers => all_provider_private_ips("#{node[:cluster_name]-zookeeper}"),
+  :nimbus     => provider_private_ip("#{node[:cluster_name]}-nimbus"),
+  :drcp_hosts => all_provider_private_ips("#{node[:cluster_name]-drcp-host}"),
+}
+
+template "#{storm_conf}" do
+  mode 0755
+  variables(settings_variables)
+  source "storm.yaml.erb"
+end
