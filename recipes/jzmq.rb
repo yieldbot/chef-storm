@@ -12,6 +12,6 @@ git node[:jzmq][:srcdir] do
 end
 execute "make_jzmq" do
   command "JAVA_HOME=/usr/lib/jvm/default-java ./autogen.sh && ./configure && make && make install"
-  cwd "#{node[:jzmq][:srcdir]}/jzmq"
+  cwd node[:jzmq][:srcdir]
   action :run
 end
