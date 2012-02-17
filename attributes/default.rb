@@ -7,4 +7,4 @@ default[:storm][:install_dir] = "#{default[:storm][:install_root]}/#{default[:st
 default[:storm][:log_dir] = "/var/log/storm"
 default[:storm][:data_dir] = "/mnt/storm"
 default[:jzmq][:repo] = "git://github.com/nathanmarz/jzmq.git"
-default[:jzmq][:srcdir] = "/usr/local/src"
+default[:jzmq][:srcdir] = "/usr/local/src/jzmq"

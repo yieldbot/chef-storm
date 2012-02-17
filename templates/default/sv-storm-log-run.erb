@@ -1,2 +1,2 @@
 #!/bin/sh
-exec chpst -u <%= @node[:storm][:user] %> svlogd <%= @node[:storm][:log_dir] %>/<%= @options[:daemon] %>
+exec svlogd -tt ./main
