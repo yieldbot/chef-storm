@@ -20,6 +20,7 @@ storm_conf = "#{node[:storm][:install_dir]}/conf/storm.yaml"
 
 remote_file "#{storm_zip}" do
   source "#{node[:storm][:release_root]}/#{node[:storm][:release_version]}.zip"
+  not_if { ::FileTest.exists? storm_zip }
 end
 
 bash "install storm" do
@@ -27,7 +28,7 @@ bash "install storm" do
   code <<-EOH
     unzip #{storm_zip} -d #{node[:storm][:install_root]}
   EOH
-  not_if { ::FileTest.exists?("#{storm_jar}") }
+  not_if { ::FileTest.exists? storm_jar }
 end
 
 settings_variables = {
