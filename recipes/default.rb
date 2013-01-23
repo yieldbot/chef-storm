@@ -26,7 +26,7 @@ end
 bash "install storm" do
   cwd Chef::Config[:file_cache_path]
   code <<-EOH
-    unzip #{storm_zip} -d #{node[:storm][:install_root]}
+    unzip -u #{storm_zip} -d #{node[:storm][:install_root]}
   EOH
   not_if { ::FileTest.exists? storm_jar }
 end
