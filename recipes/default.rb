@@ -33,9 +33,9 @@ bash "install storm" do
 end
 
 settings_variables = {
-  :zookeepers => all_provider_private_ips("#{node[:cluster_name]}-zookeeper"),
-  :nimbus     => provider_private_ip("#{node[:cluster_name]}-nimbus"),
-  :drcp_hosts => all_provider_private_ips("#{node[:cluster_name]}-drcp-host"),
+  :zookeepers => discover_all(:zookeeper, :server).map(&:private_ip).sort,
+  :nimbus     => discover(:storm, :nimbus).private_ip rescue nil,
+  :drcp_hosts => discover_all(:storm, :drcp_host).map(&:private_ip).sort,
 }
 
 template "#{storm_conf}" do
