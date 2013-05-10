@@ -35,7 +35,7 @@ end
 settings_variables = {
   :zookeepers => discover_all(:zookeeper, :server).map(&:private_ip).sort,
   :nimbus     => discover(:storm, :nimbus).private_ip,
-  :drcp_hosts => discover_all(:storm, :drcp_host).map(&:private_ip).sort,
+  :drpc_hosts => discover_all(:storm, :drpc_host).map(&:private_ip).sort,
 }
 
 template "#{storm_conf}" do
