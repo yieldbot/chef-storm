@@ -5,6 +5,11 @@ storm.zookeeper.servers:
 <% end %>
 # 
 nimbus.host: "<%= @nimbus %>"
+#
+drpc.servers:
+<% @drpc_hosts.each do |h| %>
+      - "<%= h %>"
+<% end %>
 # 
 # 
 # ##### These may optionally be filled in:
