@@ -35,7 +35,7 @@ end
 nimbus = discover(:storm, :nimbus)
 
 settings_variables = {
-  :zookeepers => discover_all(:zookeeper, :server).map(&:private_ip).sort,
+  :zookeepers => discover_all(:zookeeper, :server, node[:storm][:zk_cluster]).map(&:private_ip).sort,
   :nimbus     => nimbus.nil? ? "localhost" : nimbus.private_ip,
   :drpc_hosts => discover_all(:storm, :drpc_host).map(&:private_ip).sort,
 }
