@@ -15,7 +15,7 @@ storm_jar = "#{node[:storm][:install_dir]}/#{storm_name}.jar"
 storm_conf = "#{node[:storm][:install_dir]}/conf/storm.yaml"
 
 remote_file "#{storm_zip}" do
-  source "#{node[:storm][:release_root]}/#{storm_name}}.zip"
+  source "#{node[:storm][:release_root]}/#{storm_name}.zip"
   not_if { ::FileTest.exists? storm_zip }
 end
 
@@ -50,6 +50,7 @@ end
 %w{log_dir data_dir}.each do |dir|
    directory node[:storm][dir] do
       mode 0755
+      recursive true
       owner node[:storm]['user']
       group node[:storm]['group']
       action :create
