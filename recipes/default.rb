@@ -9,12 +9,13 @@
 
 package "unzip"
 
-storm_zip = File.join(Chef::Config[:file_cache_path], "/", "#{node[:storm][:release_version]}.zip")
-storm_jar = "#{node[:storm][:install_dir]}/#{node[:storm][:release_version]}.jar"
+storm_name = "storm-#{node[:storm][:release_version]}"
+storm_zip = File.join(Chef::Config[:file_cache_path], "/", "#{storm_name}.zip")
+storm_jar = "#{node[:storm][:install_dir]}/#{storm_name}.jar"
 storm_conf = "#{node[:storm][:install_dir]}/conf/storm.yaml"
 
 remote_file "#{storm_zip}" do
-  source "#{node[:storm][:release_root]}/#{node[:storm][:release_version]}.zip"
+  source "#{node[:storm][:release_root]}/#{storm_name}}.zip"
   not_if { ::FileTest.exists? storm_zip }
 end
 
