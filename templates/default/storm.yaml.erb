@@ -5,6 +5,8 @@ storm.zookeeper.servers:
 <% end %>
 # 
 nimbus.host: "<%= @nimbus %>"
+storm.local.dir: "<%= @node[:storm][:local_dir] %>"
+worker.childopts: "<%= @node[:storm][:worker][:childopts] %>"
 #
 drpc.servers:
 <% @drpc_hosts.each do |h| %>
