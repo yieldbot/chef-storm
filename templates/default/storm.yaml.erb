@@ -7,6 +7,10 @@ storm.zookeeper.servers:
 nimbus.host: "<%= @nimbus %>"
 storm.local.dir: "<%= @node[:storm][:local_dir] %>"
 worker.childopts: "<%= @node[:storm][:worker][:childopts] %>"
+supervisor.slots.ports:
+<% node[:storm][:supervisor][:workers].times do |i| %>
+    - <%= 6700 + i %>
+<% end %>
 #
 drpc.servers:
 <% @drpc_hosts.each do |h| %>
