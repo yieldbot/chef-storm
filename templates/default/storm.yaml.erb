@@ -7,6 +7,7 @@ storm.zookeeper.servers:
 nimbus.host: "<%= @nimbus %>"
 storm.local.dir: "<%= @node[:storm][:local_dir] %>"
 worker.childopts: "<%= @node[:storm][:worker][:childopts] %>"
+supervisor.childopts: "<%= @node[:storm][:supervisor][:childopts] %>"
 supervisor.slots.ports:
 <% node[:storm][:supervisor][:workers].times do |i| %>
     - <%= 6700 + i %>
@@ -16,16 +17,3 @@ drpc.servers:
 <% @drpc_hosts.each do |h| %>
       - "<%= h %>"
 <% end %>
-# 
-# 
-# ##### These may optionally be filled in:
-#    
-## Map of tokens to a serialization class. tokens less than 32 are reserved by storm.
-## Tokens are written on the wire to identify the field.
-# topology.serializations: 
-#     - "org.mycompany.MyObjectSerialization"
-#     - "org.mycompany.MyOtherObjectSerialization"
-## Locations of the drpc servers
-# drpc.servers:
-#     - "server1"
-#     - "server2"
