@@ -8,7 +8,6 @@ default[:storm][:log_dir] = "/var/log/storm"
 default[:storm][:local_dir] = "/mnt/storm"
 default[:storm][:worker][:childopts] = "-Xmx768m"
 default[:storm][:data_dir] = "/mnt/storm"
-default[:storm][:zk_cluster] = "zk"
 default[:jzmq][:repo] = "git://github.com/nathanmarz/jzmq.git"
 default[:jzmq][:srcdir] = "/usr/local/src/jzmq"
 default[:storm][:supervisor][:workers] = 8
