@@ -3,7 +3,7 @@ package "libtool"
 
 # clear any existing jzmq src dir, can cause permissions issues if an existing dir exists already
 directory node[:jzmq][:srcdir] do
-  rescursive true
+  recursive true
   action :delete
 end
 
