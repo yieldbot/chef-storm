@@ -36,9 +36,9 @@ end
 nimbus = discover(:storm, :nimbus)
 
 settings_variables = {
-  :zookeepers => discover_all(:zookeeper, :server).map(&:fqdn).sort,
-  :nimbus     => nimbus.nil? ? "localhost" : nimbus.fqdn,
-  :drpc_hosts => discover_all(:storm, :drpc).map(&:fqdn).sort,
+  :zookeepers => discover_all(:zookeeper, :server).map(&:private_hostname).sort,
+  :nimbus     => nimbus.nil? ? "localhost" : nimbus.private_hostname,
+  :drpc_hosts => discover_all(:storm, :drpc).map(&:private_hostname).sort,
 }
 
 template "#{storm_conf}" do
