@@ -11,8 +11,9 @@ package "unzip"
 
 storm_name = "storm-#{node[:storm][:release_version]}"
 storm_zip = File.join(Chef::Config[:file_cache_path], "/", "#{storm_name}.zip")
-storm_jar = "#{node[:storm][:install_dir]}/#{storm_name}.jar"
-storm_conf = "#{node[:storm][:install_dir]}/conf/storm.yaml"
+install_dir = "#{node[:storm][:install_root]}/#{storm_name}"
+storm_jar = "#{install_dir}/#{storm_name}.jar"
+storm_conf = "#{install_dir}/conf/storm.yaml"
 
 remote_file "#{storm_zip}" do
   source "#{node[:storm][:release_root]}/#{storm_name}.zip"
@@ -25,7 +26,7 @@ bash "install storm" do
     unzip #{storm_zip} -d #{node[:storm][:install_root]}
   EOH
   not_if { ::FileTest.exists? storm_jar }
-  not_if { ::FileTest.exists? node[:storm][:install_dir] }
+  not_if { ::FileTest.exists? install_dir }
 end
 
 nimbus = discover(:storm, :nimbus)
@@ -42,7 +43,7 @@ template "#{storm_conf}" do
   source "storm.yaml.erb"
 end
 
-template "#{node[:storm][:install_dir]}/log4j/storm.log.properties" do
+template "#{install_dir}/log4j/storm.log.properties" do
   mode 0644
   source "storm.log.properties.erb"
 end
