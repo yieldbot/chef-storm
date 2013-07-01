@@ -29,6 +29,10 @@ bash "install storm" do
   not_if { ::FileTest.exists? install_dir }
 end
 
+link "#{node[:storm][:executable_path]}/storm" do
+  to "#{install_dir}/bin/storm"
+end
+
 nimbus = discover(:storm, :nimbus)
 
 settings_variables = {

@@ -1,5 +1,6 @@
 default[:storm][:user] = 'ubuntu'
 default[:storm][:group] = 'ubuntu'
+default[:storm][:executable_path] = '/usr/local/bin'
 default[:storm][:install_root] = "/usr/local"
 default[:storm][:release_root] = "https://github.com/downloads/nathanmarz/storm"
 default[:storm][:release_version] = "0.8.2"
