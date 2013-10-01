@@ -7,6 +7,7 @@ storm.zookeeper.servers:
 nimbus.host: "<%= @nimbus %>"
 storm.local.dir: "<%= @node[:storm][:local_dir] %>"
 worker.childopts: "<%= @node[:storm][:worker][:childopts] %>"
+storm.zookeeper.root: "<%= @node[:storm][:zookeeper][:root] %>"
 supervisor.childopts: "<%= @node[:storm][:supervisor][:childopts] %>"
 supervisor.slots.ports:
 <% node[:storm][:supervisor][:workers].times do |i| %>
