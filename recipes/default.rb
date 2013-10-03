@@ -37,7 +37,7 @@ nimbus = discover(:storm, :nimbus)
 zookeepers = discover_all(:zookeeper, :server).map(&:private_hostname).sort
 
 settings_variables = {
-  :zookeepers => if zookeepers.empty? ? ["localhost"] : zookeepers,
+  :zookeepers => zookeepers.empty? ? ["localhost"] : zookeepers,
   :nimbus     => nimbus.nil? ? "localhost" : nimbus.private_hostname,
   :drpc_hosts => discover_all(:storm, :drpc).map(&:private_hostname).sort,
 }
