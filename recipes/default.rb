@@ -47,9 +47,12 @@ template "#{storm_conf}" do
   source "storm.yaml.erb"
 end
 
-template "#{install_dir}/log4j/storm.log.properties" do
-  mode 0644
-  source "storm.log.properties.erb"
+# at version 0.9 storm switched to logback for logging
+if node[:storm][:release_version].include? "0.8"
+  template "#{install_dir}/log4j/storm.log.properties" do
+    mode 0644
+    source "storm.log.properties.erb"
+  end
 end
 
 %w{log_dir data_dir}.each do |dir|
