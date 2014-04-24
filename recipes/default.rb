@@ -9,7 +9,12 @@
 
 package "unzip"
 
-storm_name = "storm-#{node[:storm][:release_version]}"
+if node[:storm][:release_name]
+  storm_name = node[:storm][:release_name]
+else
+  storm_name = "storm-#{node[:storm][:release_version]}"
+end
+
 storm_zip = File.join(Chef::Config[:file_cache_path], "/", "#{storm_name}.zip")
 install_dir = "#{node[:storm][:install_root]}/#{storm_name}"
 storm_jar = "#{install_dir}/#{storm_name}.jar"
