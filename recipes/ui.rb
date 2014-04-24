@@ -3,7 +3,7 @@ if node[:storm][:release_name]
 else
   storm_name = "storm-#{node[:storm][:release_version]}"
 end
-x
+
 install_dir = "#{node[:storm][:install_root]}/#{storm_name}"
 
 runit_service "ui" do
