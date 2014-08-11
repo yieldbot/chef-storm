@@ -14,3 +14,4 @@ default[:jzmq][:repo] = "git://github.com/nathanmarz/jzmq.git"
 default[:jzmq][:srcdir] = "/usr/local/src/jzmq"
 default[:storm][:supervisor][:workers] = 8
 default[:storm][:zookeeper][:root] = "/storm"
+default[:storm][:netty][:max_retries] = 300
