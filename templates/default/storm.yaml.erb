@@ -19,4 +19,4 @@ drpc.servers:
       - "<%= h %>"
 <% end %>
 #
-storm.messaging.netty.max_retries: "<%= @node[:storm][:netty][:max_retries] %>"
+storm.messaging.netty.max_retries: <%= @node[:storm][:netty][:max_retries] %>
