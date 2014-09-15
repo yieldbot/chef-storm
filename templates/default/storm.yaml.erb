@@ -4,6 +4,7 @@ storm.zookeeper.servers:
       - "<%= zk %>"
 <% end %>
 # 
+storm.local.hostname: "<%= @hostname %>"
 nimbus.host: "<%= @nimbus %>"
 storm.local.dir: "<%= @node[:storm][:local_dir] %>"
 worker.childopts: "<%= @node[:storm][:worker][:childopts] %>"

@@ -45,6 +45,7 @@ settings_variables = {
   :zookeepers => zookeepers.empty? ? ["localhost"] : zookeepers,
   :nimbus     => nimbus.nil? ? "localhost" : nimbus.private_hostname,
   :drpc_hosts => discover_all(:storm, :drpc).map(&:private_hostname).sort,
+  :hostname => node[:fqdn].dup
 }
 
 template "#{storm_conf}" do
