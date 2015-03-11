@@ -76,6 +76,20 @@ if node[:storm][:release_version].include? "0.9"
   end
 end
 
+if node[:storm][:release_version].include? "0.10"
+  template "#{install_dir}/logback/cluster.xml" do
+    mode 0644
+    source "cluster.xml.erb"
+  end
+end
+
+if node[:storm][:release_version].include? "0.10"
+  template "#{install_dir}/logback/worker.xml" do
+    mode 0644
+    source "worker.xml.erb"
+  end
+end
+
 %w{log_dir data_dir}.each do |dir|
    directory node[:storm][dir] do
       mode 0755
