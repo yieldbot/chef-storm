@@ -90,6 +90,21 @@ if node[:storm][:release_version].include? "0.10"
   end
 end
 
+if node[:storm][:release_version].include? "0.10.0-beta"
+  template "#{install_dir}/log4j2/cluster.xml" do
+    mode 0644
+    source "cluster.xml.log4j2.erb"
+  end
+end
+
+if node[:storm][:release_version].include? "0.10.0-beta"
+  template "#{install_dir}/log4j2/worker.xml" do
+    mode 0644
+    source "worker.xml.erb"
+  end
+end
+
+
 %w{log_dir data_dir}.each do |dir|
    directory node[:storm][dir] do
       mode 0755
