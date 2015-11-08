@@ -90,14 +90,14 @@ if node[:storm][:release_version].include? "0.10.0-SNAPSHOT"
   end
 end
 
-if node[:storm][:release_version].include? "0.10.0"
+if node[:storm][:release_version].include? "10.0"
   template "#{install_dir}/log4j2/cluster.xml" do
     mode 0644
     source "cluster.xml.log4j2.erb"
   end
 end
 
-if node[:storm][:release_version].include? "0.10.0"
+if node[:storm][:release_version].include? "10.0"
   template "#{install_dir}/log4j2/worker.xml" do
     mode 0644
     source "worker.xml.log4j2.erb"
