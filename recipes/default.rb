@@ -97,12 +97,12 @@ if node[:storm][:release_version].include? "10.0"
   end
 end
 
-#if node[:storm][:release_version].include? "10.0"
-template "#{install_dir}/log4j2/worker.xml" do
-  mode 0644
-  source "worker.xml.log4j2.erb"
+if node[:storm][:release_version].include? "10.0"
+  template "#{install_dir}/log4j2/worker.xml" do
+    mode 0644
+    source "worker.xml.log4j2.erb"
+  end
 end
-#end
 
 
 %w{log_dir data_dir}.each do |dir|
