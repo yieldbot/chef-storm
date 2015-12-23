@@ -21,3 +21,4 @@ drpc.servers:
 <% end %>
 #
 storm.messaging.netty.max_retries: <%= @node[:storm][:netty][:max_retries] %>
+nimbus.thrift.max_buffer_size: <%= @node[:storm][:nimbus][:thrift_max_buffer_size] %>
